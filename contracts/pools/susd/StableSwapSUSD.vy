@@ -52,20 +52,20 @@ contract USDT:
 
 
 # This can (and needs to) be changed at compile time
-N_COINS: constant(int128) = 4  # <- change
+N_COINS: constant(int128) = 5  # <- change
 
 ZERO256: constant(uint256) = 0  # This hack is really bad XXX
-ZEROS: constant(uint256[N_COINS]) = [ZERO256, ZERO256, ZERO256, ZERO256]  # <- change
+ZEROS: constant(uint256[N_COINS]) = [ZERO256, ZERO256, ZERO256, ZERO256,ZERO256]  # <- change
 
-USE_LENDING: constant(bool[N_COINS]) = [False, False, False, False]
+USE_LENDING: constant(bool[N_COINS]) = [False, False, False, False, False]
 
 # Flag "ERC20s" which don't return from transfer() and transferFrom()
-TETHERED: constant(bool[N_COINS]) = [False, False, True, False]
+TETHERED: constant(bool[N_COINS]) = [False, False, True, False,False]
 
 FEE_DENOMINATOR: constant(uint256) = 10 ** 10
 LENDING_PRECISION: constant(uint256) = 10 ** 18
 PRECISION: constant(uint256) = 10 ** 18  # The precision to convert to
-PRECISION_MUL: constant(uint256[N_COINS]) = [convert(1, uint256), convert(1000000000000, uint256), convert(1000000000000, uint256), convert(1, uint256)]
+PRECISION_MUL: constant(uint256[N_COINS]) = [convert(1, uint256), convert(1000000000000, uint256), convert(1000000000000, uint256), convert(1, uint256),convert(1, uint256)]
 # PRECISION_MUL: constant(uint256[N_COINS]) = [
 #     PRECISION / convert(PRECISION, uint256),  # DAI
 #     PRECISION / convert(10 ** 6, uint256),   # USDC

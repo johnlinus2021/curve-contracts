@@ -83,45 +83,4 @@ def test_swap_gas(
         swap.remove_liquidity_imbalance(amounts, 2 ** 256 - 1, {"from": alice})
         chain.sleep(3600)
 
-    if hasattr(swap, "remove_liquidity_one_coin"):
-        for idx in range(n_coins):
-            swap.remove_liquidity_one_coin(10 ** wrapped_decimals[idx], idx, 0, {"from": alice})
-            chain.sleep(3600)
 
-
-@pytest.mark.zap
-def test_zap_gas(
-    chain, alice, zap, pool_token, underlying_decimals, initial_amounts_underlying, approve_zap,
-):
-    n_coins = len(initial_amounts_underlying)
-
-    # add liquidity balanced
-    zap.add_liquidity([i // 2 for i in initial_amounts_underlying], 0, {"from": alice})
-    chain.sleep(3600)
-
-    # add liquidity imbalanced
-    for idx in range(n_coins):
-        amounts = [i // 10 for i in initial_amounts_underlying]
-        amounts[idx] = 0
-        zap.add_liquidity(amounts, 0, {"from": alice})
-        chain.sleep(3600)
-
-    # remove liquidity balanced
-    zap.remove_liquidity(10 ** 18, [0] * n_coins, {"from": alice})
-    chain.sleep(3600)
-
-    amounts = [10 ** underlying_decimals[i] for i in range(n_coins)]
-    zap.remove_liquidity_imbalance(amounts, pool_token.balanceOf(alice), {"from": alice})
-    chain.sleep(3600)
-
-    # remove liquidity imbalanced
-    for idx in range(n_coins):
-        amounts = [10 ** underlying_decimals[i] for i in range(n_coins)]
-        amounts[idx] = 0
-        zap.remove_liquidity_imbalance(amounts, pool_token.balanceOf(alice), {"from": alice})
-        chain.sleep(3600)
-
-    if hasattr(zap, "remove_liquidity_one_coin"):
-        for idx in range(n_coins):
-            zap.remove_liquidity_one_coin(10 ** underlying_decimals[idx], idx, 0, {"from": alice})
-            chain.sleep(3600)

@@ -43,14 +43,14 @@ contract Curve:
     def owner() -> address: constant
 
 
-N_COINS: constant(int128) = 4
-TETHERED: constant(bool[N_COINS]) = [False, False, True, False]
-USE_LENDING: constant(bool[N_COINS]) = [False, False, False, False]
+N_COINS: constant(int128) = 5
+TETHERED: constant(bool[N_COINS]) = [False, False, False, False,False]
+USE_LENDING: constant(bool[N_COINS]) = [False, False, False, False,False]
 ZERO256: constant(uint256) = 0  # This hack is really bad XXX
-ZEROS: constant(uint256[N_COINS]) = [ZERO256, ZERO256, ZERO256, ZERO256]  # <- change
+ZEROS: constant(uint256[N_COINS]) = [ZERO256, ZERO256, ZERO256, ZERO256,ZERO256]  # <- change
 LENDING_PRECISION: constant(uint256) = 10 ** 18
 PRECISION: constant(uint256) = 10 ** 18
-PRECISION_MUL: constant(uint256[N_COINS]) = [convert(1, uint256), convert(1000000000000, uint256), convert(1000000000000, uint256), convert(1, uint256)]
+PRECISION_MUL: constant(uint256[N_COINS]) = [convert(1, uint256), convert(1000000000000, uint256), convert(1000000000000, uint256), convert(1, uint256),convert(1000000000000, uint256)]
 FEE_DENOMINATOR: constant(uint256) = 10 ** 10
 FEE_IMPRECISION: constant(uint256) = 25 * 10 ** 8  # % of the fee
 
